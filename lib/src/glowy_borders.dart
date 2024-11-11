@@ -28,6 +28,7 @@ class AnimatedGradientBorder extends StatefulWidget {
       this.glowSize,
       this.animationProgress,
       this.stretchAlongAxis = false,
+      this.padding,
       this.stretchAxis = Axis.horizontal});
 
   final Widget child;
@@ -39,6 +40,7 @@ class AnimatedGradientBorder extends StatefulWidget {
   final double? animationProgress;
   final bool stretchAlongAxis;
   final Axis stretchAxis;
+  final EdgeInsets? padding;
 
   @override
   State<StatefulWidget> createState() => AnimatedGradientState();
@@ -82,7 +84,7 @@ class AnimatedGradientState extends State<AnimatedGradientBorder> with SingleTic
   Widget build(BuildContext context) {
     final negativeMargin = -1.0 * (widget.borderSize ?? 0);
     return Container(
-      padding: EdgeInsets.all((widget.glowSize ?? 5) * 3 + (widget.borderSize ?? 0) * 3),
+      padding: widget.padding ?? EdgeInsets.all((widget.glowSize ?? 5) * 3 + (widget.borderSize ?? 0) * 3),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(borderRadius: widget.borderRadius),
       child: Stack(alignment: Alignment.center, clipBehavior: Clip.none, children: [
